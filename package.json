@@ -1,0 +1,14 @@
+{
+  "name": "leave_bot",
+  "version": "1.0.0",
+  "description": "enforces chat entrance and exit with scheduling",
+  "main": "index.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "Tarun",
+  "license": "ISC",
+  "dependencies": {
+    "facebook-chat-api": "git@github.com:Schmavery/facebook-chat-api.git"
+  }
+}

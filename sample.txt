@@ -1,0 +1,23 @@
+{ type: 'message',
+  senderID: '100000921889753',
+  body: 'xd',
+  threadID: '1774234042601695',
+  messageID: 'mid.$gAAZNqA3bkN9m6ifvfFguOKnGeJ_E',
+  attachments: [],
+  timestamp: '1514930349948',
+  isGroup: true }
+info listen Got answer in 9302
+{ type: 'event',
+  threadID: '1774234042601695',
+  logMessageType: 'log:unsubscribe',
+  logMessageData: { leftParticipantFbId: '100006115174010' },
+  logMessageBody: 'Tarun Gogineni removed Pioline Choudhury from the group.',
+  author: '100000921889753' }
+info listen Got answer in 21217
+info listen Got answer in 297
+{ type: 'event',
+  threadID: '1774234042601695',
+  logMessageType: 'log:subscribe',
+  logMessageData: { addedParticipants: [ [Object] ] },
+  logMessageBody: 'Tarun Gogineni added Pioline Choudhury.',
+  author: '100000921889753' }
