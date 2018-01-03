@@ -4,8 +4,8 @@ const fs = require("fs");
 const login = require("facebook-chat-api");
 const Chat = require("./Chat")
 
-var group_id = '1667682209968511';
-console.log(group_id);
+var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+var group_id = config.threadID;
 
 login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, api) => {
     // Here you can use the api

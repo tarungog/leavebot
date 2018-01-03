@@ -1,3 +1,7 @@
+appstate.json
+config.js
+[0-9]*.txt
+
 # Logs
 logs
 *.log

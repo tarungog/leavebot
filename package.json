@@ -4,11 +4,12 @@
   "description": "enforces chat entrance and exit with scheduling",
   "main": "index.js",
   "scripts": {
-    "test": "node app.js"
+    "start": "node app.js"
   },
   "author": "Tarun",
   "license": "ISC",
   "dependencies": {
-    "facebook-chat-api": "git@github.com:Schmavery/facebook-chat-api.git"
+    "facebook-chat-api": "git@github.com:Schmavery/facebook-chat-api.git",
+    "underscore": "^1.8.3"
   }
 }

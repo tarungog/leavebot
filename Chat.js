@@ -1,16 +1,17 @@
 const login = require("facebook-chat-api");
 const fs = require("fs");
+const _ = require("underscore");
 
 class Chat {
     constructor(chat_id, api) {
         this.id = chat_id;
         this.api = api;
-        fs.access(this.id + ".txt", fs.constants.R_OK, (err) => {
+        fs.readFile(this.id + ".json", 'utf8', (err, data) => {
             if (err) {
                 this.left = ['00000'];
                 this.members = [];
             } else {
-                load = JSON.parse(fs.readFileSync(this.id + ".txt", 'utf8'));
+                load = JSON.parse(data);
                 this.left = load.left;
                 this.members = load.members;
             }
@@ -18,15 +19,14 @@ class Chat {
                 if (err)
                     console.log(err);
                 if (info) {
-                    console.log(info);
-                    this.members = info.participantIDs;
-                    console.log(this.members);
+                    this.members = _.union(this.members, info.participantIDs);
+                    this.clean();
                 }
             });
         })
     }
     clean() {
-        fs.writeFileSync(this.id + ".txt", JSON.stringify({"left": this.left, "members": this.members}));
+        fs.writeFile(this.id + ".txt", JSON.stringify({"left": this.left, "members": this.members}));
     }
     isChatMessage(message) {
         return message.threadID === this.id;
@@ -44,17 +44,23 @@ class Chat {
         if (this.left.includes(addedUser)) {
             this.api.removeUserFromGroup(addedUser, this.id);
         } else {
-            this.members.push(addedUser);
+            this.members = _.union(this.members, [addedUser]);
+            this.clean();
         }
     }
     handleMemberLeave(message) {
         this.api.removeUserFromGroup(message.senderID, this.id, (err) => {
             if (err) console.log(err);
             this.left.push(message.senderID);
+            this.clean();
         });
     }
     handleMemberRejoin(message) {
-        this.api.addUserToGroup(message.senderID, this.id);
+        this.api.addUserToGroup(message.senderID, this.id, (err) => {
+            if (err) console.log(err);
+            this.left = _.without(this.left, message.senderID);
+            this.clean();
+        });
     }
 }
 
