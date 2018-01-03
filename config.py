@@ -15,4 +15,4 @@ config = {
 with open('config.json', 'w+') as fp:
     json.dump(config, fp)
 
-subprocess.call("node login.js")
+subprocess.call("node login.js", shell=True)

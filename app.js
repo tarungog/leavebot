@@ -6,6 +6,7 @@ const Chat = require("./Chat")
 
 var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 var group_id = config.threadID;
+var group;
 
 login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, api) => {
     // Here you can use the api
@@ -13,7 +14,7 @@ login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, ap
     api.setOptions({listenEvents: true});
     api.sendMessage("The ancient powers of light and dark have been released.", group_id);
 
-    var group = new Chat(group_id, api);
+    group = new Chat(group_id, api);
 
     var stopListening = api.listen((err, message) => {
         if (err) console.log(err);
