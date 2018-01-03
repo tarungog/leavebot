@@ -2,9 +2,9 @@ import json
 import subprocess
 
 
-user = input("facebook username? ")
-pw = input("facebook pw? ")
-chat = input("group chat thread ID? ")
+user = raw_input("facebook username? ")
+pw = raw_input("facebook pw? ")
+chat = raw_input("group chat thread ID? ")
 
 config = {
     'user': user,
