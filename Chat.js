@@ -11,7 +11,7 @@ class Chat {
                 this.left = ['00000'];
                 this.members = [];
             } else {
-                load = JSON.parse(data);
+                var load = JSON.parse(data);
                 this.left = load.left;
                 this.members = load.members;
             }
@@ -26,7 +26,8 @@ class Chat {
         })
     }
     clean() {
-        fs.writeFile(this.id + ".txt", JSON.stringify({"left": this.left, "members": this.members}));
+        console.log("Saving state to file.");
+        fs.writeFile(this.id + ".json", JSON.stringify({"left": this.left, "members": this.members}));
     }
     isChatMessage(message) {
         return message.threadID === this.id;

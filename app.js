@@ -33,8 +33,3 @@ login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, ap
         }
     });
 });
-
-process.on('SIGINT', function() {
-    group.clean();
-    process.exit();
-  });
