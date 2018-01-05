@@ -6,13 +6,14 @@ const Chat = require("./Chat")
 
 var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 var group_id = config.threadID;
+var roon = '100000921889753';
 var group;
 
 login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, api) => {
     // Here you can use the api
     if (err) console.log(err);
     api.setOptions({listenEvents: true});
-    api.sendMessage("The ancient powers of light and dark have been released.", group_id);
+    api.sendMessage("The ancient powers of light and dark have been released.", roon);
 
     group = new Chat(group_id, api);
 
