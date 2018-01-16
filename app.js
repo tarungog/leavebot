@@ -19,16 +19,18 @@ login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, ap
 
     var stopListening = api.listen((err, message) => {
         if (err) console.log(err);
-        console.log(message);
-        if (group.isChatMessage(message)) {
-            if (message.body === '/leave') {
-                group.handleMemberLeave(message);
-            } else if (group.isMemberAdd(message)) {
-                group.handleMemberAdd(message);
-            }
-        } else if (group.isMemberMessage(message)) {
-            if (message.body === '/join') {
-                group.handleMemberRejoin(message);
+        if (message) {
+            console.log(message);
+            if (group.isChatMessage(message)) {
+                if (message.body === '/leave') {
+                    group.handleMemberLeave(message);
+                } else if (group.isMemberAdd(message)) {
+                    group.handleMemberAdd(message);
+                }
+            } else if (group.isMemberMessage(message)) {
+                if (message.body === '/join') {
+                    group.handleMemberRejoin(message);
+                }
             }
         }
     });
