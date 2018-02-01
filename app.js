@@ -9,6 +9,7 @@ var group_id = config.threadID;
 var roon = '100000921889753';
 var group;
 
+
 login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, api) => {
     // Here you can use the api
     if (err) console.log(err);
@@ -35,3 +36,9 @@ login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, ap
         }
     });
 });
+
+setTimeout(die, 24 * 3600 * 1000);
+
+function die() {
+    process.exit(0);
+}
