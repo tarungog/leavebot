@@ -6,6 +6,7 @@ class Chat {
     constructor(chat_id, api) {
         this.id = chat_id;
         this.api = api;
+
         fs.readFile(this.id + ".json", 'utf8', (err, data) => {
             if (err) {
                 this.left = ['00000'];
@@ -15,7 +16,7 @@ class Chat {
                 this.left = load.left;
                 this.members = load.members;
             }
-            this.api.getThreadInfoGraphQL(this.id, (err, info) => {
+            this.api.getThreadInfo(this.id, (err, info) => {
                 if (err)
                     console.log(err);
                 if (info) {
@@ -27,7 +28,9 @@ class Chat {
     }
     clean() {
         console.log("Saving state to file.");
-        fs.writeFile(this.id + ".json", JSON.stringify({"left": this.left, "members": this.members}));
+        fs.writeFile(this.id + ".json", JSON.stringify({"left": this.left, "members": this.members}), (err) => {
+            if (err) throw err;
+        });
     }
     isChatMessage(message) {
         return message.threadID === this.id;

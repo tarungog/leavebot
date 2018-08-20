@@ -1,6 +1,7 @@
 appstate.json
 config.json
 [0-9]*.json
+*.db
 .vscode/
 
 # Logs
