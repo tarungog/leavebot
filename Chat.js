@@ -15,7 +15,7 @@ class Chat {
                 this.left = load.left;
                 this.members = load.members;
             }
-            this.api.getThreadInfoGraphQL(this.id, (err, info) => {
+            this.api.getThreadInfo(this.id, (err, info) => {
                 if (err)
                     console.log(err);
                 if (info) {
